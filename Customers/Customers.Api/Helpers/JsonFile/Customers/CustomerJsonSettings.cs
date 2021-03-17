@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Customers.Api.Helpers.JsonFile.Customers
 {
-    public static class CustomerJson
+    public static class CustomerJsonSettings
     {
         public static void AppSettings()
         {
