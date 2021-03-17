@@ -1,15 +1,16 @@
-﻿using Microsoft.Extensions.Configuration;
-using System.IO;
+﻿using Customers.Domain.Entities;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Customers.Api.Helpers.JsonFile.Customers
 {
     public static class CustomerJsonSettings
     {
-        public static void AppSettings()
+        public static void AppSettings(this IServiceCollection services, IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-               .SetBasePath(Directory.GetCurrentDirectory())
-               .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            #region IOptions
+            services.Configure<Customer>(configuration.GetSection("clientes"));
+            #endregion
         }
     }
 }

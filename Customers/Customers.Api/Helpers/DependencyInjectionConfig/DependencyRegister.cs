@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Customers.Domain.Entities;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Customers.Api.Helpers.DependencyInjectionConfig
@@ -7,11 +8,8 @@ namespace Customers.Api.Helpers.DependencyInjectionConfig
     {
         public static void AddScoped(this IServiceCollection services, IConfiguration configuration)
         {
-            #region Handlers
-            #endregion
-
-            #region Repositories
-            #endregion
+          
+         
         }
     }
 }
