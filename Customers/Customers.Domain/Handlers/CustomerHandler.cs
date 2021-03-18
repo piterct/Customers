@@ -33,7 +33,7 @@ namespace Customers.Domain.Handlers
 
             customer = await SalaryCustomerCalculation(customer);
 
-            return new GenericCommandResult(true, "sucess!", customer, StatusCodes.Status200OK, command.Notifications);
+            return new GenericCommandResult(true, "Success!", customer, StatusCodes.Status200OK, command.Notifications);
         }
 
 
