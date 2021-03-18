@@ -1,5 +1,7 @@
 ﻿using Customers.Domain.Repositories.Json;
+using Customers.Shared.Commands.Contracts;
 using Flunt.Notifications;
+using System.Threading.Tasks;
 
 namespace Customers.Domain.Handlers
 {
@@ -12,6 +14,9 @@ namespace Customers.Domain.Handlers
             _customerJsonRepository = customerJsonRepository;
         }
 
-
+        public Task<ICommandResult> Handle(int command)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

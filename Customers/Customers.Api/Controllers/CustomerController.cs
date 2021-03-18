@@ -1,4 +1,5 @@
-﻿using Customers.Domain.Repositories.Json;
+﻿using Customers.Domain.Handlers;
+using Customers.Domain.Repositories.Json;
 using Customers.Shared.Commands;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -29,9 +30,33 @@ namespace Customers.Api.Controllers
         {
             try
             {
-                var customers = await _customerJsonRepository.GetCustomers();
+                var customers = await _customerJsonRepository.SortCustomersByName();
 
                 return GetResult(new GenericCommandResult(true, "Success", customers.OrderBy(x => x.Nome), StatusCodes.Status200OK, null));
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError("An exception has occurred at {dateTime}. " +
+                 "Exception message: {message}." +
+                 "Exception Trace: {trace}", DateTime.UtcNow, exception.Message, exception.StackTrace);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("GetCustomerById")]
+        public async ValueTask<IActionResult> GetCustomers(int IdCustomer, [FromServices] CustomerHandler handler)
+        {
+            try
+            {
+                var customer = await _customerJsonRepository.GetCustomerById(IdCustomer);
+
+                if (customer == null)
+                    return GetResult(new GenericCommandResult(false, "NotFound", customer, StatusCodes.Status404NotFound, null));
+
+                return GetResult(new GenericCommandResult(true, "Success", customer, StatusCodes.Status200OK, null));
             }
             catch (Exception exception)
             {
