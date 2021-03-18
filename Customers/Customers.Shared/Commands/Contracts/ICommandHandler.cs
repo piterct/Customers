@@ -4,6 +4,6 @@ namespace Customers.Shared.Commands.Contracts
 {
     public interface ICommandHandler<T> where T : ICommand
     {
-        Task<ICommandResult> Handle(T command);
+        ValueTask<ICommandResult> Handle(T command);
     }
 }

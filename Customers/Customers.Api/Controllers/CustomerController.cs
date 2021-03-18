@@ -1,4 +1,5 @@
-﻿using Customers.Domain.Handlers;
+﻿using Customers.Domain.Commands.Customer;
+using Customers.Domain.Handlers;
 using Customers.Domain.Repositories.Json;
 using Customers.Shared.Commands;
 using Microsoft.AspNetCore.Authorization;
@@ -47,7 +48,7 @@ namespace Customers.Api.Controllers
         [HttpGet]
         [AllowAnonymous]
         [Route("GetCustomerById")]
-        public async ValueTask<IActionResult> GetCustomers(int IdCustomer, [FromServices] CustomerHandler handler)
+        public async ValueTask<IActionResult> GetCustomers(int IdCustomer)
         {
             try
             {
@@ -57,6 +58,26 @@ namespace Customers.Api.Controllers
                     return GetResult(new GenericCommandResult(false, "NotFound", customer, StatusCodes.Status404NotFound, null));
 
                 return GetResult(new GenericCommandResult(true, "Success", customer, StatusCodes.Status200OK, null));
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError("An exception has occurred at {dateTime}. " +
+                 "Exception message: {message}." +
+                 "Exception Trace: {trace}", DateTime.UtcNow, exception.Message, exception.StackTrace);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [HttpPatch]
+        [AllowAnonymous]
+        [Route("GetCustomerByCpf")]
+        public async ValueTask<IActionResult> GetCustomers([FromBody] GetCustomerByCPFCommand command, [FromServices] CustomerHandler handler)
+        {
+            try
+            {
+                var result = await handler.Handle(command);
+
+                return GetResult((GenericCommandResult)result);
             }
             catch (Exception exception)
             {
