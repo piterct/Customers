@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Customers.Api.Controllers
@@ -23,13 +24,14 @@ namespace Customers.Api.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        [Route("SortCustomerByName")]
         public async ValueTask<IActionResult> GetCustomers()
         {
             try
             {
                 var customers = await _customerJsonRepository.GetCustomers();
 
-                return GetResult(new GenericCommandResult(true, "Success", customers, StatusCodes.Status200OK, null));
+                return GetResult(new GenericCommandResult(true, "Success", customers.OrderBy(x => x.Nome), StatusCodes.Status200OK, null));
             }
             catch (Exception exception)
             {

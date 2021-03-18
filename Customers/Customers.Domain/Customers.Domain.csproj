@@ -5,12 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
+    <Folder Include="Commands\Customer\" />
     <Folder Include="Enums\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Flunt" Version="1.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Customers.Shared\Customers.Shared.csproj" />
   </ItemGroup>
 
 </Project>
