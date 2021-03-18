@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Customers.Infra.Json.Json {
+namespace Customers.Infra.Json.Json.Customer {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Customers.Infra.Json.Json {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Customers.Infra.Json.Json.CustomerResource", typeof(CustomerResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Customers.Infra.Json.Json.Customer.CustomerResource", typeof(CustomerResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

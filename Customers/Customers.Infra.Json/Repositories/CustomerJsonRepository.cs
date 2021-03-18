@@ -2,7 +2,7 @@
 using Customers.Domain.Entities;
 using Customers.Domain.Queries;
 using Customers.Domain.Repositories.Json;
-using Customers.Infra.Json.Json;
+using Customers.Infra.Json.Json.Customer;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;

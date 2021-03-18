@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Json\CustomerResource.Designer.cs">
+    <Compile Update="Json\Customer\CustomerResource.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>CustomerResource.resx</DependentUpon>
@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Json\CustomerResource.resx">
+    <EmbeddedResource Update="Json\Customer\CustomerResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CustomerResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
