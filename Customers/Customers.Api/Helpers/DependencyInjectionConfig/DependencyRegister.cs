@@ -1,4 +1,5 @@
-﻿using Customers.Domain.Entities;
+﻿using Customers.Domain.Repositories.Json;
+using Customers.Infra.Json.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,8 +9,11 @@ namespace Customers.Api.Helpers.DependencyInjectionConfig
     {
         public static void AddScoped(this IServiceCollection services, IConfiguration configuration)
         {
-          
-         
+
+            #region Repositories
+            services.AddTransient<ICustomerJsonRepository, CustomerJsonRepository>();
+            #endregion
+
         }
     }
 }
