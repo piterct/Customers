@@ -31,22 +31,14 @@ namespace Customers.Domain.Handlers
             if (customer == null)
                 return new GenericCommandResult(false, "NotFound", null, StatusCodes.Status404NotFound, command.Notifications);
 
-            customer = await SalaryCustomerCalculation(customer);
+            customer = new Customer(customer.Id, customer.Nome, customer.Cpf, customer.Salario);
+
+            customer.SalaryCustomerCalculation();
 
             return new GenericCommandResult(true, "Success!", customer, StatusCodes.Status200OK, command.Notifications);
         }
 
 
-        #region Private Methods
-
-        private async ValueTask<Customer> SalaryCustomerCalculation(Customer customer)
-        {
-            customer.Salario = Math.Round(customer.Salario * 0.30M, 2);
-
-            return await Task.FromResult(customer);
-        }
-
-        #endregion
     }
 
 
