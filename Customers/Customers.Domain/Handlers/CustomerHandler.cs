@@ -26,12 +26,12 @@ namespace Customers.Domain.Handlers
             if (command.Invalid)
                 return new GenericCommandResult(false, "Incorrect  data!", null, StatusCodes.Status400BadRequest, command.Notifications);
 
-            var customer = await _customerJsonRepository.GetCustomerByCpf(command);
+            Customer customerRepository = await _customerJsonRepository.GetCustomerByCpf(command);
 
-            if (customer == null)
+            if (customerRepository == null)
                 return new GenericCommandResult(false, "NotFound", null, StatusCodes.Status404NotFound, command.Notifications);
 
-            customer = new Customer(customer.Id, customer.Nome, customer.Cpf, customer.Salario);
+            Customer customer = new Customer(customerRepository.Id, customerRepository.Nome, customerRepository.Cpf, customerRepository.Salario);
 
             customer.SalaryCustomerCalculation();
 
