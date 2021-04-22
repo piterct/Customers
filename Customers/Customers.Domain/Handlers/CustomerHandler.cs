@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Customers.Domain.Handlers
 {
-    public class CustomerHandler : Notifiable, ICommandHandler<GetCustomerByCPFCommand>
+    public class CustomerHandler : Notifiable
     {
         private readonly ICustomerJsonRepository _customerJsonRepository;
 
