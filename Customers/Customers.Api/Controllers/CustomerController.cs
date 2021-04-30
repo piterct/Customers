@@ -1,4 +1,5 @@
 ﻿using Customers.Domain.Commands.Customer;
+using Customers.Domain.Commands.Result;
 using Customers.Domain.Handlers;
 using Customers.Domain.Repositories.Json;
 using Customers.Shared.Commands;
@@ -71,13 +72,14 @@ namespace Customers.Api.Controllers
         [HttpPatch]
         [AllowAnonymous]
         [Route("GetCustomerByCpf")]
-        public async ValueTask<IActionResult> GetCustomers([FromBody] GetCustomerByCPFCommand command, [FromServices] CustomerHandler handler)
+        [ProducesResponseType(typeof(GetCustomerByCPFCommandResult), StatusCodes.Status200OK)]
+        public async ValueTask<IActionResult> GetCustomers([FromBody] GetCustomerByCPFCommandInput command, [FromServices] CustomerHandler handler)
         {
             try
             {
                 var result = await handler.Handle(command);
 
-                return GetResult((GenericCommandResult)result);
+                return GetResult(result);
             }
             catch (Exception exception)
             {

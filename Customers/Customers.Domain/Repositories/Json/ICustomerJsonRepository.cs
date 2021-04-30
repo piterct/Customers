@@ -9,6 +9,6 @@ namespace Customers.Domain.Repositories.Json
     {
         ValueTask<List<Customer>> SortCustomersByName();
         ValueTask<Customer> GetCustomerById(int idCustomer);
-        ValueTask<Customer> GetCustomerByCpf(GetCustomerByCPFCommand command);
+        ValueTask<Customer> GetCustomerByCpf(GetCustomerByCPFCommandInput command);
     }
 }

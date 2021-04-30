@@ -1,11 +1,10 @@
 ﻿using Customers.Domain.Commands.Customer;
+using Customers.Domain.Commands.Output;
+using Customers.Domain.Commands.Result;
 using Customers.Domain.Entities;
 using Customers.Domain.Repositories.Json;
-using Customers.Shared.Commands;
-using Customers.Shared.Commands.Contracts;
 using Flunt.Notifications;
 using Microsoft.AspNetCore.Http;
-using System;
 using System.Threading.Tasks;
 
 namespace Customers.Domain.Handlers
@@ -20,22 +19,24 @@ namespace Customers.Domain.Handlers
         }
 
 
-        public async ValueTask<ICommandResult> Handle(GetCustomerByCPFCommand command)
+        public async ValueTask<GetCustomerByCPFCommandResult> Handle(GetCustomerByCPFCommandInput command)
         {
             command.Validate();
             if (command.Invalid)
-                return new GenericCommandResult(false, "Incorrect  data!", null, StatusCodes.Status400BadRequest, command.Notifications);
+                return new GetCustomerByCPFCommandResult(false, "Incorrect  data!", null, StatusCodes.Status400BadRequest, command.Notifications);
 
             Customer customerRepository = await _customerJsonRepository.GetCustomerByCpf(command);
 
             if (customerRepository == null)
-                return new GenericCommandResult(false, "NotFound", null, StatusCodes.Status404NotFound, command.Notifications);
+                return new GetCustomerByCPFCommandResult(false, "NotFound", null, StatusCodes.Status404NotFound, command.Notifications);
 
-            Customer customer = new Customer(customerRepository.Id, customerRepository.Nome, customerRepository.Cpf, customerRepository.Salario);
+            Customer customer = new Entities.Customer(customerRepository.Id, customerRepository.Nome, customerRepository.Cpf, customerRepository.Salario);
 
             customer.SalaryCustomerCalculation();
 
-            return new GenericCommandResult(true, "Success!", customer, StatusCodes.Status200OK, command.Notifications);
+            GetCustomerByCPFCommandOutput customerByCPFcommandOutput = new GetCustomerByCPFCommandOutput(customer.Id, customer.Nome, customer.Cpf, customer.Salario);
+
+            return new GetCustomerByCPFCommandResult(true, "Success!", customerByCPFcommandOutput, StatusCodes.Status200OK, command.Notifications);
         }
 
 

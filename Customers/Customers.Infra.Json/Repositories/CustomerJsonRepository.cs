@@ -19,7 +19,7 @@ namespace Customers.Infra.Json.Repositories
             return await Task.FromResult(customers.Clientes.Where(x => x.Id == idCustomer).FirstOrDefault());
         }
 
-        public async ValueTask<Customer> GetCustomerByCpf(GetCustomerByCPFCommand command)
+        public async ValueTask<Customer> GetCustomerByCpf(GetCustomerByCPFCommandInput command)
         {
             var customers = JsonConvert.DeserializeObject<CustomerQuery>(CustomerResource.Customers);
 
@@ -32,6 +32,7 @@ namespace Customers.Infra.Json.Repositories
 
             return await Task.FromResult(customers.Clientes);
         }
+
     }
 }
 
