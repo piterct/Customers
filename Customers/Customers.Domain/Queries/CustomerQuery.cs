@@ -5,6 +5,6 @@ namespace Customers.Domain.Queries
 {
     public class CustomerQuery
     {
-        public List<Customer> Clientes { get; set; }
+        public List<CustomerEntity> Clientes { get; set; }
     }
 }

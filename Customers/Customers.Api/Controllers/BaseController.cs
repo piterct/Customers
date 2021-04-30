@@ -10,5 +10,7 @@ namespace Customers.Api.Controllers
         public IActionResult GetResult(GenericCommandResult result) => StatusCode(result.StatusCode, result);
         [ApiExplorerSettings(IgnoreApi = true)]
         public IActionResult GetResult(GetCustomerByCPFCommandResult result) => StatusCode(result.StatusCode, result);
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public IActionResult GetResult(SortCustomerByNameCommandResult result) => StatusCode(result.StatusCode, result);
     }
 }

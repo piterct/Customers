@@ -7,8 +7,8 @@ namespace Customers.Domain.Repositories.Json
 {
     public interface ICustomerJsonRepository
     {
-        ValueTask<List<Customer>> SortCustomersByName();
-        ValueTask<Customer> GetCustomerById(int idCustomer);
-        ValueTask<Customer> GetCustomerByCpf(GetCustomerByCPFCommandInput command);
+        ValueTask<List<CustomerEntity>> SortCustomersByName();
+        ValueTask<CustomerEntity> GetCustomerById(int idCustomer);
+        ValueTask<CustomerEntity> GetCustomerByCpf(GetCustomerByCPFCommandInput command);
     }
 }

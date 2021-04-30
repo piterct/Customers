@@ -28,13 +28,14 @@ namespace Customers.Api.Controllers
         [HttpGet]
         [AllowAnonymous]
         [Route("SortCustomerByName")]
+        [ProducesResponseType(typeof(SortCustomerByNameCommandResult), StatusCodes.Status200OK)]
         public async ValueTask<IActionResult> GetCustomers()
         {
             try
             {
                 var customers = await _customerJsonRepository.SortCustomersByName();
 
-                return GetResult(new GenericCommandResult(true, "Success", customers.OrderBy(x => x.Nome), StatusCodes.Status200OK, null));
+                return GetResult(new SortCustomerByNameCommandResult(true, "Success", customers.OrderBy(x => x.Nome).ToList(), StatusCodes.Status200OK, null));
             }
             catch (Exception exception)
             {

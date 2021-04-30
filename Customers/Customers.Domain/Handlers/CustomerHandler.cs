@@ -25,12 +25,12 @@ namespace Customers.Domain.Handlers
             if (command.Invalid)
                 return new GetCustomerByCPFCommandResult(false, "Incorrect  data!", null, StatusCodes.Status400BadRequest, command.Notifications);
 
-            Customer customerRepository = await _customerJsonRepository.GetCustomerByCpf(command);
+            CustomerEntity customerRepository = await _customerJsonRepository.GetCustomerByCpf(command);
 
             if (customerRepository == null)
                 return new GetCustomerByCPFCommandResult(false, "NotFound", null, StatusCodes.Status404NotFound, command.Notifications);
 
-            Customer customer = new Entities.Customer(customerRepository.Id, customerRepository.Nome, customerRepository.Cpf, customerRepository.Salario);
+            CustomerEntity customer = new CustomerEntity(customerRepository.Id, customerRepository.Nome, customerRepository.Cpf, customerRepository.Salario);
 
             customer.SalaryCustomerCalculation();
 

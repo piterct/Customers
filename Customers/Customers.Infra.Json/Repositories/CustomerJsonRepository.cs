@@ -12,21 +12,21 @@ namespace Customers.Infra.Json.Repositories
 {
     public class CustomerJsonRepository : ICustomerJsonRepository
     {
-        public async ValueTask<Customer> GetCustomerById(int idCustomer)
+        public async ValueTask<CustomerEntity> GetCustomerById(int idCustomer)
         {
             var customers = JsonConvert.DeserializeObject<CustomerQuery>(CustomerResource.Customers);
 
             return await Task.FromResult(customers.Clientes.Where(x => x.Id == idCustomer).FirstOrDefault());
         }
 
-        public async ValueTask<Customer> GetCustomerByCpf(GetCustomerByCPFCommandInput command)
+        public async ValueTask<CustomerEntity> GetCustomerByCpf(GetCustomerByCPFCommandInput command)
         {
             var customers = JsonConvert.DeserializeObject<CustomerQuery>(CustomerResource.Customers);
 
             return await Task.FromResult(customers.Clientes.Where(x => x.Cpf == command.CPF).FirstOrDefault());
         }
 
-        public async ValueTask<List<Customer>> SortCustomersByName()
+        public async ValueTask<List<CustomerEntity>> SortCustomersByName()
         {
             var customers = JsonConvert.DeserializeObject<CustomerQuery>(CustomerResource.Customers);
 

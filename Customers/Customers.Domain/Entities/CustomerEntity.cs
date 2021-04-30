@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace Customers.Domain.Entities
 {
-    public class Customer
+    public class CustomerEntity
     {
-        public Customer(int id, string nome, string cpf, decimal salario)
+        public CustomerEntity(int id, string nome, string cpf, decimal salario)
         {
             Id = id;
             Nome = nome;
