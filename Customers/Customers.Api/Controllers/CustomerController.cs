@@ -1,4 +1,5 @@
 ﻿using Customers.Domain.Commands.Customer;
+using Customers.Domain.Commands.Inputs;
 using Customers.Domain.Commands.Result;
 using Customers.Domain.Handlers;
 using Customers.Domain.Repositories.Json;
@@ -50,11 +51,11 @@ namespace Customers.Api.Controllers
         [HttpGet]
         [AllowAnonymous]
         [Route("GetCustomerById")]
-        public async ValueTask<IActionResult> GetCustomers(int IdCustomer)
+        public async ValueTask<IActionResult> GetCustomers(int idCustomer)
         {
             try
             {
-                var customer = await _customerJsonRepository.GetCustomerById(IdCustomer);
+                var customer = await _customerJsonRepository.GetCustomerById(new GetCustomerByIdCommandInput { IdCustomer = idCustomer });
 
                 if (customer == null)
                     return GetResult(new GenericCommandResult(false, "NotFound", customer, StatusCodes.Status404NotFound, null));

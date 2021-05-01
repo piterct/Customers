@@ -1,4 +1,5 @@
 ﻿using Customers.Domain.Commands.Customer;
+using Customers.Domain.Commands.Inputs;
 using Customers.Domain.Entities;
 using Customers.Domain.Queries;
 using Customers.Domain.Repositories.Json;
@@ -12,11 +13,11 @@ namespace Customers.Infra.Json.Repositories
 {
     public class CustomerJsonRepository : ICustomerJsonRepository
     {
-        public async ValueTask<CustomerEntity> GetCustomerById(int idCustomer)
+        public async ValueTask<CustomerEntity> GetCustomerById(GetCustomerByIdCommandInput command )
         {
             var customers = JsonConvert.DeserializeObject<CustomerQuery>(CustomerResource.Customers);
 
-            return await Task.FromResult(customers.Clientes.Where(x => x.Id == idCustomer).FirstOrDefault());
+            return await Task.FromResult(customers.Clientes.Where(x => x.Id == command.IdCustomer).FirstOrDefault());
         }
 
         public async ValueTask<CustomerEntity> GetCustomerByCpf(GetCustomerByCPFCommandInput command)
