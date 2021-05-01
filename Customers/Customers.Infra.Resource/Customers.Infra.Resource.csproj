@@ -6,7 +6,21 @@
 
   <ItemGroup>
     <Folder Include="Repositories\" />
-    <Folder Include="Resource\Customer\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resource\Customer\CustomerResource.Designer.cs">
+      <DependentUpon>CustomerResource.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resource\Customer\CustomerResource.resx">
+      <LastGenOutput>CustomerResource.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
