@@ -18,14 +18,13 @@ namespace Customers.Domain.Handlers
             _customerJsonRepository = customerJsonRepository;
         }
 
-
         public async ValueTask<GetCustomerByCPFCommandResult> Handle(GetCustomerByCPFCommandInput command)
         {
             command.Validate();
             if (command.Invalid)
                 return new GetCustomerByCPFCommandResult(false, "Incorrect  data!", null, StatusCodes.Status400BadRequest, command.Notifications);
 
-            CustomerEntity customerRepository = await _customerJsonRepository.GetCustomerByCpf(command);
+            CustomerEntity customerRepository = await _customerJsonRepository.GetCustomerByCpf(command);          
 
             if (customerRepository == null)
                 return new GetCustomerByCPFCommandResult(false, "NotFound", null, StatusCodes.Status404NotFound, command.Notifications);

@@ -1,5 +1,6 @@
 ﻿using Customers.Domain.Commands.Customer;
 using Customers.Domain.Commands.Inputs;
+using Customers.Domain.Commands.Output;
 using Customers.Domain.Commands.Result;
 using Customers.Domain.Handlers;
 using Customers.Domain.Repositories.Json;
@@ -58,9 +59,11 @@ namespace Customers.Api.Controllers
                 var customer = await _customerJsonRepository.GetCustomerById(new GetCustomerByIdCommandInput { IdCustomer = idCustomer });
 
                 if (customer == null)
-                    return GetResult(new GenericCommandResult(false, "NotFound", customer, StatusCodes.Status404NotFound, null));
+                    return GetResult(new GetCustomerByIdCommandResult(false, "NotFound", null, StatusCodes.Status404NotFound, null));
 
-                return GetResult(new GenericCommandResult(true, "Success", customer, StatusCodes.Status200OK, null));
+                GetCustomerByIdCommandOutPut GetCustomerByCPFCommandOutput = new GetCustomerByIdCommandOutPut(customer.Id, customer.Nome, customer.Cpf, customer.Salario);
+
+                return GetResult(new GetCustomerByIdCommandResult(true, "Success", GetCustomerByCPFCommandOutput, StatusCodes.Status200OK, null));
             }
             catch (Exception exception)
             {
