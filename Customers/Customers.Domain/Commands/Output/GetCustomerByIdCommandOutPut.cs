@@ -1,4 +1,6 @@
-﻿namespace Customers.Domain.Commands.Output
+﻿using System.Text.Json.Serialization;
+
+namespace Customers.Domain.Commands.Output
 {
     public class GetCustomerByIdCommandOutPut
     {

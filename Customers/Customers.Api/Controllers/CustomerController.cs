@@ -52,6 +52,7 @@ namespace Customers.Api.Controllers
         [HttpGet]
         [AllowAnonymous]
         [Route("GetCustomerById")]
+        [ProducesResponseType(typeof(GetCustomerByIdCommandResult), StatusCodes.Status200OK)]
         public async ValueTask<IActionResult> GetCustomers(int idCustomer)
         {
             try
