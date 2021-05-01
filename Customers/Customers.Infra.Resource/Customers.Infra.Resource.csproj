@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Customers.Domain\Customers.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Resource\Customer\CustomerResource.Designer.cs">
       <DependentUpon>CustomerResource.resx</DependentUpon>
       <DesignTime>True</DesignTime>

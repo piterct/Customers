@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Customers.Domain\Customers.Domain.csproj" />
     <ProjectReference Include="..\Customers.Infra.Json\Customers.Infra.Json.csproj" />
+    <ProjectReference Include="..\Customers.Infra.Resource\Customers.Infra.Resource.csproj" />
     <ProjectReference Include="..\Customers.Shared\Customers.Shared.csproj" />
   </ItemGroup>
 
