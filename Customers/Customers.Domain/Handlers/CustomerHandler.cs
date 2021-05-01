@@ -3,8 +3,11 @@ using Customers.Domain.Commands.Output;
 using Customers.Domain.Commands.Result;
 using Customers.Domain.Entities;
 using Customers.Domain.Repositories.Json;
+using Customers.Shared.Settings;
 using Flunt.Notifications;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Customers.Domain.Handlers
@@ -12,10 +15,12 @@ namespace Customers.Domain.Handlers
     public class CustomerHandler : Notifiable
     {
         private readonly ICustomerJsonRepository _customerJsonRepository;
+        private readonly List<Clientes> _listClientesJson;
 
-        public CustomerHandler(ICustomerJsonRepository customerJsonRepository)
+        public CustomerHandler(ICustomerJsonRepository customerJsonRepository, IOptions<CustomerJsonSettings> jsonSettings)
         {
             _customerJsonRepository = customerJsonRepository;
+            _listClientesJson = jsonSettings.Value.ClientesJson;
         }
 
         public async ValueTask<GetCustomerByCPFCommandResult> Handle(GetCustomerByCPFCommandInput command)
@@ -24,7 +29,7 @@ namespace Customers.Domain.Handlers
             if (command.Invalid)
                 return new GetCustomerByCPFCommandResult(false, "Incorrect  data!", null, StatusCodes.Status400BadRequest, command.Notifications);
 
-            CustomerEntity customerRepository = await _customerJsonRepository.GetCustomerByCpf(command);          
+            CustomerEntity customerRepository = await _customerJsonRepository.GetCustomerByCpf(command);
 
             if (customerRepository == null)
                 return new GetCustomerByCPFCommandResult(false, "NotFound", null, StatusCodes.Status404NotFound, command.Notifications);
