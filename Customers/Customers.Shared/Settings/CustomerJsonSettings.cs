@@ -4,10 +4,10 @@ namespace Customers.Shared.Settings
 {
     public class CustomerJsonSettings
     {
-        public List<ClientesJson> ClientesJson { get; set; }
+        public List<CustomersJson> CustomersJson { get; set; }
     }
 
-    public class ClientesJson
+    public class CustomersJson
     {
         public int Id { get; set; }
         public string Nome { get; set; }

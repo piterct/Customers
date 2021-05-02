@@ -15,12 +15,12 @@ namespace Customers.Infra.Json.Repositories
 {
     public class CustomerJsonRepository : ICustomerJsonRepository
     {
-        private readonly List<ClientesJson> _listClientesJson;
+        private readonly List<CustomersJson> _listClientesJson;
         public CustomerJsonRepository(IOptions<CustomerJsonSettings> jsonSettings)
         {
-            _listClientesJson = jsonSettings.Value.ClientesJson;
+            _listClientesJson = jsonSettings.Value.CustomersJson;
         }
-        public async ValueTask<ClientesJson> GetCustomerById(GetCustomerByIdCommandInput command)
+        public async ValueTask<CustomersJson> GetCustomerById(GetCustomerByIdCommandInput command)
         {
             return await Task.FromResult(_listClientesJson.Where(x => x.Id == command.IdCustomer).FirstOrDefault());
         }
