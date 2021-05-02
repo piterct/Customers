@@ -11,6 +11,6 @@ namespace Customers.Domain.Repositories.Json
     {
         ValueTask<List<CustomerEntity>> SortCustomersByName();
         ValueTask<CustomersJson> GetCustomerById(GetCustomerByIdCommandInput command);
-        ValueTask<CustomerEntity> GetCustomerByCpf(GetCustomerByCPFCommandInput command);
+        ValueTask<CustomersJson> GetCustomerByCpf(GetCustomerByCPFCommandInput command);
     }
 }

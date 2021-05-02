@@ -25,11 +25,9 @@ namespace Customers.Infra.Json.Repositories
             return await Task.FromResult(_listClientesJson.Where(x => x.Id == command.IdCustomer).FirstOrDefault());
         }
 
-        public async ValueTask<CustomerEntity> GetCustomerByCpf(GetCustomerByCPFCommandInput command)
+        public async ValueTask<CustomersJson> GetCustomerByCpf(GetCustomerByCPFCommandInput command)
         {
-            var customers = JsonConvert.DeserializeObject<CustomerQuery>(CustomerResource.Customers);
-
-            return await Task.FromResult(customers.Clientes.Where(x => x.Cpf == command.CPF).FirstOrDefault());
+            return await Task.FromResult(_listClientesJson.Where(x => x.Cpf == command.CPF).FirstOrDefault());
         }
 
         public async ValueTask<List<CustomerEntity>> SortCustomersByName()
