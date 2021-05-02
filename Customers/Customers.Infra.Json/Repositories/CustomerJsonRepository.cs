@@ -16,9 +16,9 @@ namespace Customers.Infra.Json.Repositories
     public class CustomerJsonRepository : ICustomerJsonRepository
     {
         private readonly List<CustomersJson> _listClientesJson;
-        public CustomerJsonRepository(IOptions<CustomerJsonSettings> jsonSettings)
+        public CustomerJsonRepository(IOptions<CustomerJsonSettings> customerJsonSettings)
         {
-            _listClientesJson = jsonSettings.Value.CustomersJson;
+            _listClientesJson = customerJsonSettings.Value.CustomersJson;
         }
         public async ValueTask<CustomersJson> GetCustomerById(GetCustomerByIdCommandInput command)
         {
@@ -30,11 +30,9 @@ namespace Customers.Infra.Json.Repositories
             return await Task.FromResult(_listClientesJson.Where(x => x.Cpf == command.CPF).FirstOrDefault());
         }
 
-        public async ValueTask<List<CustomerEntity>> SortCustomersByName()
+        public async ValueTask<List<CustomersJson>> SortCustomersByName()
         {
-            var customers = JsonConvert.DeserializeObject<CustomerQuery>(CustomerResource.Customers);
-
-            return await Task.FromResult(customers.Clientes);
+            return await Task.FromResult(_listClientesJson);
         }
 
     }
