@@ -15,12 +15,11 @@ namespace Customers.Domain.Handlers
     public class CustomerHandler : Notifiable
     {
         private readonly ICustomerJsonRepository _customerJsonRepository;
-        private readonly List<Clientes> _listClientesJson;
+     
 
-        public CustomerHandler(ICustomerJsonRepository customerJsonRepository, IOptions<CustomerJsonSettings> jsonSettings)
+        public CustomerHandler(ICustomerJsonRepository customerJsonRepository)
         {
             _customerJsonRepository = customerJsonRepository;
-            _listClientesJson = jsonSettings.Value.ClientesJson;
         }
 
         public async ValueTask<GetCustomerByCPFCommandResult> Handle(GetCustomerByCPFCommandInput command)
