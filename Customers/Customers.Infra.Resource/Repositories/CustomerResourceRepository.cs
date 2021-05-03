@@ -2,6 +2,7 @@
 using Customers.Domain.Commands.Inputs;
 using Customers.Domain.Entities;
 using Customers.Domain.Queries;
+using Customers.Domain.Repositories.Resource;
 using Customers.Infra.Resource.Resource.Customer;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Customers.Infra.Json.Repositories
 {
-    public class CustomerResourceRepository 
+    public class CustomerResourceRepository : ICustomerResourceRepository
     {
         public async ValueTask<CustomerEntity> GetCustomerById(GetCustomerByIdCommandInput command )
         {
