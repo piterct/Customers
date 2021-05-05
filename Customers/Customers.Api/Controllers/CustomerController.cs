@@ -37,7 +37,7 @@ namespace Customers.Api.Controllers
             {
                 var customers = await _customerJsonRepository.SortCustomersByName();
 
-                return GetResult(new SortCustomerByNameCommandResult(true, "Success", customers.OrderBy(x => x.Nome).ToList(), StatusCodes.Status200OK, null));
+                return GetResult(new SortCustomerByNameCommandResult(true, "Success", customers.OrderBy(x => x.Name).ToList(), StatusCodes.Status200OK, null));
             }
             catch (Exception exception)
             {
@@ -62,7 +62,7 @@ namespace Customers.Api.Controllers
                 if (customer == null)
                     return GetResult(new GetCustomerByIdCommandResult(false, "NotFound", null, StatusCodes.Status404NotFound, null));
 
-                GetCustomerByIdCommandOutPut GetCustomerByCPFCommandOutput = new GetCustomerByIdCommandOutPut(customer.Id, customer.Nome, customer.Cpf, customer.Salario);
+                GetCustomerByIdCommandOutPut GetCustomerByCPFCommandOutput = new GetCustomerByIdCommandOutPut(customer.Id, customer.Name, customer.Cpf, customer.Salary);
 
                 return GetResult(new GetCustomerByIdCommandResult(true, "Success", GetCustomerByCPFCommandOutput, StatusCodes.Status200OK, null));
             }

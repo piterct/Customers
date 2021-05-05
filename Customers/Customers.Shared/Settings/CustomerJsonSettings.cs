@@ -10,8 +10,8 @@ namespace Customers.Shared.Settings
     public class CustomersJson
     {
         public int Id { get; set; }
-        public string Nome { get; set; }
+        public string Name { get; set; }
         public string Cpf { get; set; }
-        public decimal Salario { get; set; }
+        public decimal Salary { get; set; }
     }
 }

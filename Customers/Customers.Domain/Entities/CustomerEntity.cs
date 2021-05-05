@@ -5,22 +5,22 @@ namespace Customers.Domain.Entities
 {
     public class CustomerEntity
     {
-        public CustomerEntity(int id, string nome, string cpf, decimal salario)
+        public CustomerEntity(int id, string name, string cpf, decimal salary)
         {
             Id = id;
-            Nome = nome;
+            Name = name;
             Cpf = cpf;
-            Salario = salario;
+            Salary = salary;
 
         }
         public int Id { get; private set; }
-        public string Nome { get; private set; }
+        public string Name { get; private set; }
         public string Cpf { get; private set; }
-        public decimal Salario { get; private set; }
+        public decimal Salary { get; private set; }
 
         public async void SalaryCustomerCalculation()
         {
-            await Task.FromResult(this.Salario = Math.Round(this.Salario * 0.30M, 2));
+            await Task.FromResult(this.Salary = Math.Round(this.Salary * 0.30M, 2));
         }
     }
 }
