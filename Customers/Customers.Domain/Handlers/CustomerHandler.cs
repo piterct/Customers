@@ -3,6 +3,7 @@ using Customers.Domain.Commands.Output;
 using Customers.Domain.Commands.Result;
 using Customers.Domain.Entities;
 using Customers.Domain.Repositories.Json;
+using Customers.Domain.Repositories.Resource;
 using Customers.Shared.Settings;
 using Flunt.Notifications;
 using Microsoft.AspNetCore.Http;
@@ -13,6 +14,7 @@ namespace Customers.Domain.Handlers
     public class CustomerHandler : Notifiable
     {
         private readonly ICustomerJsonRepository _customerJsonRepository;
+        private readonly ICustomerResourceRepository _customerResourceRepository;
 
 
         public CustomerHandler(ICustomerJsonRepository customerJsonRepository)

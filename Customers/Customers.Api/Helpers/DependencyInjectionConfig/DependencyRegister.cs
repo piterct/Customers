@@ -1,5 +1,6 @@
 ﻿using Customers.Domain.Handlers;
 using Customers.Domain.Repositories.Json;
+using Customers.Domain.Repositories.Resource;
 using Customers.Infra.Json.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +14,9 @@ namespace Customers.Api.Helpers.DependencyInjectionConfig
 
             #region Repositories
             services.AddTransient<ICustomerJsonRepository, CustomerJsonRepository>();
+            services.AddTransient<ICustomerResourceRepository, CustomerResourceRepository>();
             #endregion
+
 
             #region Handlers
             services.AddTransient<CustomerHandler, CustomerHandler>();
