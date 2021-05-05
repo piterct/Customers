@@ -33,7 +33,7 @@ namespace Customers.Domain.Handlers
             if (customerRepository == null)
                 return new GetCustomerByCPFCommandResult(false, "NotFound", null, StatusCodes.Status404NotFound, command.Notifications);
 
-            CustomerEntity customer = new CustomerEntity(customerRepository.Id, customerRepository.Name, customerRepository.Cpf, customerRepository.Salary);
+            Customer customer = new Customer(customerRepository.Id, customerRepository.Name, customerRepository.Cpf, customerRepository.Salary);
 
             customer.SalaryCustomerCalculation();
 

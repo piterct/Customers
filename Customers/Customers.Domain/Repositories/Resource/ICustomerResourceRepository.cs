@@ -8,8 +8,8 @@ namespace Customers.Domain.Repositories.Resource
 {
     public interface ICustomerResourceRepository
     {
-        ValueTask<List<CustomerEntity>> SortCustomersByName();
-        ValueTask<CustomerEntity> GetCustomerById(GetCustomerByIdCommandInput command);
-        ValueTask<CustomerEntity> GetCustomerByCpf(GetCustomerByCPFCommandInput command);
+        ValueTask<List<Customer>> SortCustomersByName();
+        ValueTask<Customer> GetCustomerById(GetCustomerByIdCommandInput command);
+        ValueTask<Customer> GetCustomerByCpf(GetCustomerByCPFCommandInput command);
     }
 }
