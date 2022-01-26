@@ -1,12 +1,10 @@
 ﻿using Customers.Domain.Commands.Output;
 using Flunt.Notifications;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Customers.Domain.Commands.Result
 {
-   public  class GetCustomerByCPFCommandResult
+    public  class GetCustomerByCPFCommandResult
     {
         public GetCustomerByCPFCommandResult(bool success, string message, GetCustomerByCPFCommandOutput data , int statusCode, IEnumerable<Notification> notifications)
         {
